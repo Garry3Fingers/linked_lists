@@ -71,6 +71,18 @@ class LinkedList
     end
     false
   end
+
+  def find(value)
+    temp = @head
+    i = 0
+    until temp.nil?
+      return i if temp.value == value
+
+      i += 1
+      temp = temp.next_node
+    end
+    nil
+  end
 end
 
 # This class represents one element of the list
@@ -111,3 +123,5 @@ linked_list.append({ name: 'Aleksandr', age: 30 })
 # p linked_list.pop
 # puts linked_list.contains?({ name: 'Aleksandr', age: 30 })
 # puts linked_list.contains?(1)
+# puts linked_list.find({ name: 'Valdislav', age: 29 })
+# p linked_list.find(1)
