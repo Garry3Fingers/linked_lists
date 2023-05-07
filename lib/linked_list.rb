@@ -13,15 +13,27 @@ class LinkedList
     if @head.nil?
       prepend(value)
     else
-      tmp = @head
-      tmp = tmp.next_node until tmp.next_node.nil?
-      tmp.next_node = Node.new(value)
-      @tail = tmp.next_node
+      temp = @head
+      temp = temp.next_node until temp.next_node.nil?
+      temp.next_node = Node.new(value)
+      @tail = temp.next_node
     end
   end
 
   def prepend(value)
     @head = Node.new(value)
+  end
+
+  def size
+    size = 0
+    return size if @head.nil?
+
+    temp = @head
+    until temp.nil?
+      size += 1
+      temp = temp.next_node
+    end
+    size
   end
 end
 
@@ -36,12 +48,14 @@ class Node
 end
 
 linked_list = LinkedList.new
+puts linked_list.size
 linked_list.prepend({ name: 'Valdislav', age: 29 })
 # p linked_list.head.next_node
 linked_list.append({ name: 'Anastasia', age: 24 })
 # puts linked_list.tail.value[:name]
 # p linked_list.tail.next_node
 linked_list.append({ name: 'Aleksandr', age: 30 })
-puts linked_list.tail.value[:name]
-p linked_list.tail.next_node
-puts linked_list.head.next_node.value[:name]
+# puts linked_list.tail.value[:name]
+# p linked_list.tail.next_node
+# puts linked_list.head.next_node.value[:name]
+puts linked_list.size
