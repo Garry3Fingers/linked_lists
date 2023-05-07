@@ -61,6 +61,16 @@ class LinkedList
     @tail = current_node if size > 1
     @tail = nil if size == 1
   end
+
+  def contains?(value)
+    temp = @head
+    until temp.nil?
+      return true if temp.value == value
+
+      temp = temp.next_node
+    end
+    false
+  end
 end
 
 # This class represents one element of the list
@@ -99,3 +109,5 @@ linked_list.append({ name: 'Aleksandr', age: 30 })
 # p linked_list.tail
 # p linked_list.head
 # p linked_list.pop
+# puts linked_list.contains?({ name: 'Aleksandr', age: 30 })
+# puts linked_list.contains?(1)
