@@ -35,6 +35,18 @@ class LinkedList
     end
     size
   end
+
+  def at(index)
+    return 'Node doesn\'t exist!' if index > size - 1 || @head.nil?
+
+    temp = @head
+    i = 0
+    while i < index
+      temp = temp.next_node
+      i += 1
+    end
+    temp
+  end
 end
 
 # This class represents one element of the list
@@ -48,7 +60,8 @@ class Node
 end
 
 linked_list = LinkedList.new
-puts linked_list.size
+p linked_list.at(1)
+# puts linked_list.size
 linked_list.prepend({ name: 'Valdislav', age: 29 })
 # p linked_list.head.next_node
 linked_list.append({ name: 'Anastasia', age: 24 })
@@ -58,4 +71,5 @@ linked_list.append({ name: 'Aleksandr', age: 30 })
 # puts linked_list.tail.value[:name]
 # p linked_list.tail.next_node
 # puts linked_list.head.next_node.value[:name]
-puts linked_list.size
+# puts linked_list.size
+p linked_list.at(1)
