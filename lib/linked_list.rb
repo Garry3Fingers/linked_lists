@@ -83,6 +83,16 @@ class LinkedList
     end
     nil
   end
+
+  def to_s
+    temp = @head
+    string = ''
+    until temp.nil?
+      string = string.dup.concat("(#{temp.value}) -> ")
+      temp = temp.next_node
+    end
+    string.dup.concat('nil')
+  end
 end
 
 # This class represents one element of the list
@@ -96,6 +106,7 @@ class Node
 end
 
 linked_list = LinkedList.new
+puts linked_list.to_s
 # p linked_list.at(1)
 # puts linked_list.size
 linked_list.prepend({ name: 'Valdislav', age: 29 })
@@ -125,3 +136,4 @@ linked_list.append({ name: 'Aleksandr', age: 30 })
 # puts linked_list.contains?(1)
 # puts linked_list.find({ name: 'Valdislav', age: 29 })
 # p linked_list.find(1)
+puts linked_list.to_s
