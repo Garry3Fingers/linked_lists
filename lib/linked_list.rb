@@ -112,6 +112,23 @@ class LinkedList
     end
   end
 
+  def remove_at(index)
+    if index > size - 1
+      "Node doesn\'t exist at index #{index}"
+    else
+      i = 0
+      current_node = @head
+      next_node = @head.next_node
+      while i + 1 < index
+        current_node = current_node.next_node
+        next_node = next_node.next_node
+        i += 1
+      end
+      current_node.next_node = next_node.next_node
+      @tail = current_node if @tail == next_node
+    end
+  end
+
   private
 
   def insert(value, index)
