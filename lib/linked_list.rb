@@ -108,7 +108,9 @@ class LinkedList
     elsif index.zero?
       prepend(value)
     else
-      insert(value, index)
+      arr_node = traversing_two_nodes(index)
+      temp = Node.new(value, arr_node[1])
+      arr_node[0].next_node = temp
     end
   end
 
@@ -131,7 +133,7 @@ class LinkedList
 
   private
 
-  def insert(value, index)
+  def traversing_two_nodes(index)
     i = 0
     current_node = @head
     next_node = @head.next_node
@@ -140,7 +142,18 @@ class LinkedList
       current_node = current_node.next_node
       next_node = next_node.next_node
     end
-    temp = Node.new(value, next_node)
-    current_node.next_node = temp
+    [current_node, next_node]
   end
 end
+
+linked_list = LinkedList.new
+linked_list.prepend({ name: 'Valdislav', age: 29 })
+linked_list.append({ name: 'Anastasia', age: 24 })
+linked_list.append({ name: 'Aleksandr', age: 30 })
+linked_list.insert_at({ name: 'Ludmila', age: 21 }, 0)
+puts linked_list.to_s
+linked_list.insert_at({ name: 'Victor', age: 65 }, 2)
+puts linked_list.to_s
+# linked_list.remove_at(4)
+# puts linked_list.tail.value
+# puts linked_list.to_s
