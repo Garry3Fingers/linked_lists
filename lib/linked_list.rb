@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'node'
+
 # This class represents the full list
 class LinkedList
   attr_accessor :head, :tail
@@ -125,23 +127,3 @@ class LinkedList
     current_node.next_node = temp
   end
 end
-
-# This class represents one element of the list
-class Node
-  attr_accessor :value, :next_node
-
-  def initialize(value = nil, next_node = nil)
-    @value = value
-    @next_node = next_node
-  end
-end
-
-linked_list = LinkedList.new
-linked_list.prepend({ name: 'Valdislav', age: 29 })
-linked_list.prepend({ name: 'Anastasia', age: 24 })
-puts linked_list.to_s
-linked_list.append({ name: 'Aleksandr', age: 30 })
-linked_list.insert_at({ name: 'Ludmila', age: 21 }, 0)
-puts linked_list.to_s
-linked_list.insert_at({ name: 'Victor', age: 65 }, 2)
-puts linked_list.to_s
