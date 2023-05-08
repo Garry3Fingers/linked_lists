@@ -21,7 +21,13 @@ class LinkedList
   end
 
   def prepend(value)
-    @head = Node.new(value)
+    if head.nil?
+      @head = Node.new(value)
+    else
+      temp = @head
+      @head = Node.new(value, temp)
+      @tail = temp if tail.nil?
+    end
   end
 
   def size
@@ -93,6 +99,31 @@ class LinkedList
     end
     string.dup.concat('nil')
   end
+
+  def insert_at(value, index)
+    if index > size - 1
+      append(value)
+    elsif index.zero?
+      prepend(value)
+    else
+      insert(value, index)
+    end
+  end
+
+  private
+
+  def insert(value, index)
+    i = 0
+    current_node = @head
+    next_node = @head.next_node
+    while i + 1 < index
+      i += 1
+      current_node = current_node.next_node
+      next_node = next_node.next_node
+    end
+    temp = Node.new(value, next_node)
+    current_node.next_node = temp
+  end
 end
 
 # This class represents one element of the list
@@ -106,34 +137,11 @@ class Node
 end
 
 linked_list = LinkedList.new
-puts linked_list.to_s
-# p linked_list.at(1)
-# puts linked_list.size
 linked_list.prepend({ name: 'Valdislav', age: 29 })
-# p linked_list.head.next_node
-linked_list.append({ name: 'Anastasia', age: 24 })
-# puts linked_list.tail.value[:name]
-# p linked_list.tail.next_node
+linked_list.prepend({ name: 'Anastasia', age: 24 })
+puts linked_list.to_s
 linked_list.append({ name: 'Aleksandr', age: 30 })
-# puts linked_list.tail.value[:name]
-# p linked_list.tail.next_node
-# puts linked_list.head.next_node.value[:name]
-# puts linked_list.size
-# p linked_list.at(1)
-# linked_list.pop
-# puts linked_list.size
-# p linked_list.tail
-# linked_list.pop
-# puts linked_list.size
-# p linked_list.tail
-# p linked_list.head
-# linked_list.pop
-# puts linked_list.size
-# p linked_list.tail
-# p linked_list.head
-# p linked_list.pop
-# puts linked_list.contains?({ name: 'Aleksandr', age: 30 })
-# puts linked_list.contains?(1)
-# puts linked_list.find({ name: 'Valdislav', age: 29 })
-# p linked_list.find(1)
+linked_list.insert_at({ name: 'Ludmila', age: 21 }, 0)
+puts linked_list.to_s
+linked_list.insert_at({ name: 'Victor', age: 65 }, 2)
 puts linked_list.to_s
