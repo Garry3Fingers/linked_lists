@@ -4,11 +4,10 @@ require_relative 'node'
 
 # This class represents the full list
 class LinkedList
-  attr_accessor :head, :tail
+  attr_reader :head
 
   def initialize
     @head = nil
-    @tail = nil
   end
 
   def append(value)
@@ -18,7 +17,6 @@ class LinkedList
       temp = @head
       temp = temp.next_node until temp.next_node.nil?
       temp.next_node = Node.new(value)
-      @tail = temp.next_node
     end
   end
 
@@ -28,7 +26,6 @@ class LinkedList
     else
       temp = @head
       @head = Node.new(value, temp)
-      @tail = temp if tail.nil?
     end
   end
 
@@ -65,9 +62,7 @@ class LinkedList
       current_node = temp
       temp = temp.next_node
     end
-    current_node.next_node = nil
-    @tail = current_node if size > 1
-    @tail = nil if size == 1
+    (current_node.next_node = nil)
   end
 
   def contains?(value)
@@ -120,8 +115,13 @@ class LinkedList
     else
       arr_node = traversing_two_nodes(index)
       arr_node[0].next_node = arr_node[1].next_node
-      @tail = arr_node[0] if @tail == arr_node[1]
     end
+  end
+
+  def tail
+    temp = @head
+    temp = temp.next_node until temp.next_node.nil?
+    temp
   end
 
   private
@@ -148,5 +148,5 @@ puts linked_list.to_s
 linked_list.insert_at({ name: 'Victor', age: 65 }, 2)
 puts linked_list.to_s
 linked_list.remove_at(4)
-puts linked_list.tail.value
-puts linked_list.to_s
+linked_list.pop
+p linked_list.tail
