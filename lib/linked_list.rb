@@ -26,22 +26,16 @@ class LinkedList
   end
 
   def size(size = 0, accum = @head)
-    return size if @head.nil?
     return size if accum.nil?
 
     size(size + 1, accum.next_node)
   end
 
-  def at(index)
-    return 'Node doesn\'t exist!' if index > size - 1 || @head.nil?
+  def at(index, accum = @head, num = 0)
+    return 'Node doesn\'t exist!' if index > size - 1 || accum.nil?
+    return accum if num == index
 
-    temp = @head
-    i = 0
-    while i < index
-      temp = temp.next_node
-      i += 1
-    end
-    temp
+    at(index, accum.next_node, num + 1)
   end
 
   def pop
@@ -130,15 +124,3 @@ class LinkedList
   end
 end
 
-linked_list = LinkedList.new
-# linked_list.append({ name: 'Valdislav', age: 29 })
-# linked_list.append({ name: 'Anastasia', age: 24 })
-# linked_list.append({ name: 'Aleksandr', age: 30 })
-# linked_list.insert_at({ name: 'Ludmila', age: 21 }, 0)
-# puts linked_list.to_s
-# linked_list.insert_at({ name: 'Victor', age: 65 }, 2)
-puts linked_list.size
-# puts linked_list.to_s
-# linked_list.remove_at(4)
-# linked_list.pop
-# p linked_list.tail
