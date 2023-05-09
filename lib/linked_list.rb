@@ -95,12 +95,10 @@ class LinkedList
   end
 
   def remove_at(index)
-    if index > size - 1
-      "Node doesn\'t exist at index #{index}"
-    else
-      arr_node = traversing_two_nodes(index)
-      arr_node[0].next_node = arr_node[1].next_node
-    end
+    return "Node doesn\'t exist at index #{index}" if index > size - 1
+
+    arr_node = traversing_two_nodes(index)
+    arr_node[0].next_node = arr_node[1].next_node
   end
 
   def tail(accum = @head)
@@ -123,4 +121,3 @@ class LinkedList
     [current_node, next_node]
   end
 end
-
