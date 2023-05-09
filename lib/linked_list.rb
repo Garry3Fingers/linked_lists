@@ -25,16 +25,11 @@ class LinkedList
     @head = Node.new(value, temp)
   end
 
-  def size
-    size = 0
+  def size(size = 0, accum = @head)
     return size if @head.nil?
+    return size if accum.nil?
 
-    temp = @head
-    until temp.nil?
-      size += 1
-      temp = temp.next_node
-    end
-    size
+    size(size + 1, accum.next_node)
   end
 
   def at(index)
@@ -136,13 +131,13 @@ class LinkedList
 end
 
 linked_list = LinkedList.new
-linked_list.append({ name: 'Valdislav', age: 29 })
+# linked_list.append({ name: 'Valdislav', age: 29 })
 # linked_list.append({ name: 'Anastasia', age: 24 })
 # linked_list.append({ name: 'Aleksandr', age: 30 })
-p linked_list.tail
 # linked_list.insert_at({ name: 'Ludmila', age: 21 }, 0)
 # puts linked_list.to_s
 # linked_list.insert_at({ name: 'Victor', age: 65 }, 2)
+puts linked_list.size
 # puts linked_list.to_s
 # linked_list.remove_at(4)
 # linked_list.pop
