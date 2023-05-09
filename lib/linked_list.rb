@@ -21,12 +21,10 @@ class LinkedList
   end
 
   def prepend(value)
-    if head.nil?
-      @head = Node.new(value)
-    else
-      temp = @head
-      @head = Node.new(value, temp)
-    end
+    return @head = Node.new(value) if head.nil?
+
+    temp = @head
+    @head = Node.new(value, temp)
   end
 
   def size
@@ -141,12 +139,14 @@ end
 
 linked_list = LinkedList.new
 linked_list.prepend({ name: 'Valdislav', age: 29 })
-linked_list.append({ name: 'Anastasia', age: 24 })
-linked_list.append({ name: 'Aleksandr', age: 30 })
-linked_list.insert_at({ name: 'Ludmila', age: 21 }, 0)
-puts linked_list.to_s
-linked_list.insert_at({ name: 'Victor', age: 65 }, 2)
-puts linked_list.to_s
-linked_list.remove_at(4)
-linked_list.pop
 p linked_list.tail
+linked_list.prepend({ name: 'Anastasia', age: 24 })
+p linked_list.head
+# linked_list.append({ name: 'Aleksandr', age: 30 })
+# linked_list.insert_at({ name: 'Ludmila', age: 21 }, 0)
+# puts linked_list.to_s
+# linked_list.insert_at({ name: 'Victor', age: 65 }, 2)
+# puts linked_list.to_s
+# linked_list.remove_at(4)
+# linked_list.pop
+# p linked_list.tail
