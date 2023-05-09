@@ -11,13 +11,11 @@ class LinkedList
   end
 
   def append(value)
-    if @head.nil?
-      prepend(value)
-    else
-      temp = @head
-      temp = temp.next_node until temp.next_node.nil?
-      temp.next_node = Node.new(value)
-    end
+    return prepend(value) if @head.nil?
+
+    temp = @head
+    temp = temp.next_node until temp.next_node.nil?
+    temp.next_node = Node.new(value)
   end
 
   def prepend(value)
@@ -138,11 +136,10 @@ class LinkedList
 end
 
 linked_list = LinkedList.new
-linked_list.prepend({ name: 'Valdislav', age: 29 })
-p linked_list.tail
-linked_list.prepend({ name: 'Anastasia', age: 24 })
-p linked_list.head
-# linked_list.append({ name: 'Aleksandr', age: 30 })
+linked_list.append({ name: 'Valdislav', age: 29 })
+linked_list.append({ name: 'Anastasia', age: 24 })
+linked_list.append({ name: 'Aleksandr', age: 30 })
+puts linked_list.to_s
 # linked_list.insert_at({ name: 'Ludmila', age: 21 }, 0)
 # puts linked_list.to_s
 # linked_list.insert_at({ name: 'Victor', age: 65 }, 2)
