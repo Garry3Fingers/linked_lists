@@ -88,17 +88,17 @@ class LinkedList
     elsif index.zero?
       prepend(value)
     else
-      arr_node = traversing_two_nodes(index)
-      temp = Node.new(value, arr_node[1])
-      arr_node[0].next_node = temp
+      nodes = traversing_two_nodes(index)
+      temp = Node.new(value, nodes.next_node)
+      nodes.correct_node.next_node = temp
     end
   end
 
   def remove_at(index)
     return "Node doesn\'t exist at index #{index}" if index > size - 1
 
-    arr_node = traversing_two_nodes(index)
-    arr_node[0].next_node = arr_node[1].next_node
+    nodes = traversing_two_nodes(index)
+    nodes.correct_node.next_node = nodes.next_node.next_node
   end
 
   def tail(accum = head)
@@ -109,15 +109,16 @@ class LinkedList
 
   private
 
+  TwoNodes = Struct.new(:correct_node, :next_node)
+
   def traversing_two_nodes(index)
     i = 0
-    current_node = head
-    next_node = head.next_node
+    nodes = TwoNodes.new(head, head.next_node)
     while i + 1 < index
       i += 1
-      current_node = current_node.next_node
-      next_node = next_node.next_node
+      nodes.correct_node = nodes.correct_node.next_node
+      nodes.next_node = nodes.next_node.next_node
     end
-    [current_node, next_node]
+    nodes
   end
 end
