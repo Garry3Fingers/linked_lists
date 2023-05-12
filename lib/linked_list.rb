@@ -4,7 +4,7 @@ require_relative 'node'
 
 # This class represents the full list
 class LinkedList
-  attr_reader :head
+  attr_accessor :head
 
   def initialize
     @head = nil
@@ -19,10 +19,10 @@ class LinkedList
   end
 
   def prepend(value)
-    return @head = Node.new(value) if head.nil?
+    return self.head = Node.new(value) if head.nil?
 
     temp = head
-    @head = Node.new(value, temp)
+    self.head = Node.new(value, temp)
   end
 
   def size(size = 0, accum = head)
@@ -40,7 +40,7 @@ class LinkedList
 
   def pop
     return 'Cannot delete!' if head.nil?
-    return @head = nil if head.next_node.nil?
+    return self.head = nil if head.next_node.nil?
 
     temp = head
     until temp.next_node.nil?
