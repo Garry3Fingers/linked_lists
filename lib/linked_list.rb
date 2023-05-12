@@ -11,9 +11,9 @@ class LinkedList
   end
 
   def append(value)
-    return prepend(value) if @head.nil?
+    return prepend(value) if head.nil?
 
-    temp = @head
+    temp = head
     temp = temp.next_node until temp.next_node.nil?
     temp.next_node = Node.new(value)
   end
@@ -21,17 +21,17 @@ class LinkedList
   def prepend(value)
     return @head = Node.new(value) if head.nil?
 
-    temp = @head
+    temp = head
     @head = Node.new(value, temp)
   end
 
-  def size(size = 0, accum = @head)
+  def size(size = 0, accum = head)
     return size if accum.nil?
 
     size(size + 1, accum.next_node)
   end
 
-  def at(index, accum = @head, num = 0)
+  def at(index, accum = head, num = 0)
     return 'Node doesn\'t exist!' if index > size - 1 || accum.nil?
     return accum if num == index
 
@@ -40,9 +40,9 @@ class LinkedList
 
   def pop
     return 'Cannot delete!' if head.nil?
-    return @head = nil if @head.next_node.nil?
+    return @head = nil if head.next_node.nil?
 
-    temp = @head
+    temp = head
     until temp.next_node.nil?
       current_node = temp
       temp = temp.next_node
@@ -51,7 +51,7 @@ class LinkedList
   end
 
   def contains?(value)
-    temp = @head
+    temp = head
     until temp.nil?
       return true if temp.value == value
 
@@ -61,7 +61,7 @@ class LinkedList
   end
 
   def find(value)
-    temp = @head
+    temp = head
     i = 0
     until temp.nil?
       return i if temp.value == value
@@ -73,7 +73,7 @@ class LinkedList
   end
 
   def to_s
-    temp = @head
+    temp = head
     string = ''
     until temp.nil?
       string = string.dup.concat("(#{temp.value}) -> ")
@@ -101,7 +101,7 @@ class LinkedList
     arr_node[0].next_node = arr_node[1].next_node
   end
 
-  def tail(accum = @head)
+  def tail(accum = head)
     return accum if accum.nil? || accum.next_node.nil?
 
     tail(accum.next_node)
@@ -111,8 +111,8 @@ class LinkedList
 
   def traversing_two_nodes(index)
     i = 0
-    current_node = @head
-    next_node = @head.next_node
+    current_node = head
+    next_node = head.next_node
     while i + 1 < index
       i += 1
       current_node = current_node.next_node
